@@ -1,13 +1,11 @@
 import React from "react";
 import "./index.scss";
-import { OrderListType } from "@/types/order";
+import useOrderStore from "@/store/order";
 
-type Props = {
-  orderLists: OrderListType[];
-  setOrderLists: React.Dispatch<React.SetStateAction<OrderListType[]>>;
-};
+const OrderLists = () => {
+  const orderLists = useOrderStore((state) => state.orderLists);
+  const setOrderLists = useOrderStore((state) => state.setOrderLists);
 
-const OrderLists = ({ orderLists, setOrderLists }: Props) => {
   return (
     <div>
       {orderLists?.map((orderList) => {

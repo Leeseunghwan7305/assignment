@@ -7,11 +7,11 @@ import { getOrderApi } from "@/api/order";
 import BottomSheet from "@/components/orderPage/BottomSheet";
 import Loading from "@/components/orderPage/Loading";
 import OrderLists from "@/components/orderPage/OrderLists";
-import { OrderListType } from "@/types/order";
+import useOrderStore from "@/store/order";
 
 const Order = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [orderLists, setOrderLists] = useState<OrderListType[]>([]);
+  const setOrderLists = useOrderStore((state) => state.setOrderLists);
 
   useEffect(() => {
     (async () => {
@@ -24,11 +24,7 @@ const Order = () => {
   return (
     <main className="order">
       <Nav />
-      {loading ? (
-        <Loading />
-      ) : (
-        <OrderLists orderLists={orderLists} setOrderLists={setOrderLists} />
-      )}
+      {loading ? <Loading /> : <OrderLists />}
 
       <BottomSheet />
     </main>
