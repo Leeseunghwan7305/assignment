@@ -7,10 +7,10 @@ const OrderLists = () => {
   const setOrderLists = useOrderStore((state) => state.setOrderLists);
 
   return (
-    <div>
+    <div className="OrderLists">
       {orderLists?.map((orderList) => {
         return (
-          <div className="OrderLists" key={orderList.id}>
+          <div className="OrderList" key={orderList.id}>
             <div className="picture" />
             <div>
               <div>
