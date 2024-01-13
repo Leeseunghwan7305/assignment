@@ -6,12 +6,15 @@ import useOrderStore from "@/store/order";
 import { getOrderAPI } from "@/apis/order";
 import Loading from "../Loading";
 import { OrderListType } from "@/types/order";
+import { formatNumberWithCommas } from "@/utils/order";
 
 const OrderLists = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   const orderLists = useOrderStore((state) => state.orderLists);
   const setOrderLists = useOrderStore((state) => state.setOrderLists);
+  const setOrderPlus = useOrderStore((state) => state.setOrderPlus);
+  const setOrderMinus = useOrderStore((state) => state.setOrderMinus);
 
   useEffect(() => {
     (async () => {
@@ -30,9 +33,12 @@ const OrderLists = () => {
         <Loading />
       ) : (
         <div className="OrderLists">
-          {orderLists?.map((orderList) => {
+          {orderLists?.map((orderList, idx) => {
             return (
-              <div className="OrderList" key={orderList.id}>
+              <div
+                className={`OrderList ${orderList.count && "highlight"}`}
+                key={idx}
+              >
                 <div className="picture" />
                 <div>
                   <div className="name-event">
@@ -40,12 +46,18 @@ const OrderLists = () => {
                     {orderList.event && <div>이벤트</div>}
                   </div>
                   <div className="count">
-                    <button>-</button>
+                    <button onClick={() => setOrderMinus(orderList.id)}>
+                      -
+                    </button>
                     <div>{orderList.count}</div>
-                    <button>+</button>
+                    <button onClick={() => setOrderPlus(orderList.id)}>
+                      +
+                    </button>
                   </div>
                 </div>
-                <div className="price">{orderList.price}</div>
+                <div className="price">
+                  {formatNumberWithCommas(orderList.price)}원
+                </div>
               </div>
             );
           })}

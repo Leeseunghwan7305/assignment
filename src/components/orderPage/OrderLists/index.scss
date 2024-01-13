@@ -1,6 +1,11 @@
 .OrderLists {
   margin-top: 75px;
   margin-bottom: 188px;
+
+  .highlight {
+    background-color: rgba(247, 90, 47, 0.1);
+  }
+
   .OrderList {
     position: relative;
     display: flex;
