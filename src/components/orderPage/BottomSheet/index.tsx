@@ -12,8 +12,6 @@ import {
 const BottomSheet = () => {
   const { orderLists } = useOrderStore((state) => state);
 
-  console.log(orderLists);
-
   return (
     <div className="BottomSheet">
       <div>
@@ -22,7 +20,12 @@ const BottomSheet = () => {
           총 가격 :{formatNumberWithCommas(orderListSumPrice(orderLists))}원
         </p>
       </div>
-      <button>주문하기</button>
+      <button
+        disabled={orderListSumCount(orderLists) === 0 ? true : false}
+        className={`${orderListSumCount(orderLists) > 0 ? "highlight" : null}`}
+      >
+        주문하기
+      </button>
     </div>
   );
 };

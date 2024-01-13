@@ -33,4 +33,8 @@
     border: none;
     margin-left: 22px;
   }
+
+  & > .highlight {
+    background-color: rgba(0, 0, 0, 1);
+  }
 }
