@@ -18,9 +18,15 @@ const BottomSheet = () => {
 
   const clickPurchase = () => {
     setLoading(true);
-    setTimeout(() => {
-      router.push("/complete");
-    }, 2000);
+    if (!orderLists) {
+      setTimeout(() => {
+        router.push("/error");
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        router.push("/complete");
+      }, 2000);
+    }
   };
 
   return (
