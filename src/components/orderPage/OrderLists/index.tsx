@@ -31,11 +31,11 @@ const OrderLists = () => {
         <Loading />
       ) : (
         <div className="OrderLists">
-          {orderLists?.map((orderList, idx) => {
+          {orderLists?.map((orderList) => {
             return (
               <div
                 className={`OrderList ${orderList.count && "highlight"}`}
-                key={idx}
+                key={orderList.id}
               >
                 <div className="picture" />
                 <div>
