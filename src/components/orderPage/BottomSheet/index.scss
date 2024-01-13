@@ -32,9 +32,13 @@
     color: rgba(255, 255, 255, 1);
     border: none;
     margin-left: 22px;
+    font-size: 18px;
   }
 
   & > .highlight {
     background-color: rgba(0, 0, 0, 1);
+  }
+  & > .loadingHighlight {
+    background-color: rgba(193, 193, 193, 1) !important;
   }
 }

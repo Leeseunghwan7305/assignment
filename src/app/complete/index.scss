@@ -1,0 +1,15 @@
+.Complete {
+  width: 350px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+
+  & > p {
+    margin-top: 12px;
+  }
+}

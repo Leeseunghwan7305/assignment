@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import useOrderStore from "@/store/order";
 import {
@@ -8,9 +8,20 @@ import {
   orderListSumCount,
   orderListSumPrice,
 } from "@/utils/order";
+import { useRouter } from "next/navigation";
 
 const BottomSheet = () => {
+  const router = useRouter();
+
+  const [loading, setLoading] = useState<boolean>(false);
   const { orderLists } = useOrderStore((state) => state);
+
+  const clickPurchase = () => {
+    setLoading(true);
+    setTimeout(() => {
+      router.push("/complete");
+    }, 2000);
+  };
 
   return (
     <div className="BottomSheet">
@@ -22,9 +33,12 @@ const BottomSheet = () => {
       </div>
       <button
         disabled={orderListSumCount(orderLists) === 0 ? true : false}
-        className={`${orderListSumCount(orderLists) > 0 ? "highlight" : null}`}
+        className={`${
+          orderListSumCount(orderLists) > 0 && !loading ? "highlight" : null
+        } `}
+        onClick={clickPurchase}
       >
-        주문하기
+        {loading ? "로딩중..." : "주문하기"}
       </button>
     </div>
   );
