@@ -1,4 +1,3 @@
-import { OrderListType } from "@/types/order";
 import { api } from "./apiCustom";
 
 export const getOrderAPI = async () => {
