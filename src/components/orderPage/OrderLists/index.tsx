@@ -11,10 +11,8 @@ import { formatNumberWithCommas } from "@/utils/order";
 const OrderLists = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
-  const orderLists = useOrderStore((state) => state.orderLists);
-  const setOrderLists = useOrderStore((state) => state.setOrderLists);
-  const setOrderPlus = useOrderStore((state) => state.setOrderPlus);
-  const setOrderMinus = useOrderStore((state) => state.setOrderMinus);
+  const { orderLists, setOrderLists, setOrderPlus, setOrderMinus } =
+    useOrderStore((state) => state);
 
   useEffect(() => {
     (async () => {

@@ -13,33 +13,40 @@ type Actions = {
 
 const useOrderStore = create<State & Actions>((set) => ({
   orderLists: [],
+
   setOrderLists: (newOrderLists: OrderListType[]) =>
     set(() => ({ orderLists: newOrderLists })),
+
   setOrderPlus: (id: string) =>
     set((state) => {
       const updatedOrderLists = [...state.orderLists];
-
-      const targetItem = updatedOrderLists.find((item) => item.id === id);
-      if (targetItem) {
-        if (targetItem.count >= 999) return state;
-        targetItem.count += 1;
-        return { orderLists: [...updatedOrderLists, targetItem] };
+      const targetItemIndex = updatedOrderLists.findIndex(
+        (item) => item.id === id
+      );
+      if (targetItemIndex !== -1) {
+        const targetItem = updatedOrderLists[targetItemIndex];
+        if (targetItem.count < 999) {
+          targetItem.count += 1;
+        }
+        updatedOrderLists[targetItemIndex] = targetItem;
       }
-
-      return state;
+      return { orderLists: updatedOrderLists };
     }),
+
   setOrderMinus: (id: string) =>
     set((state) => {
       const updatedOrderLists = [...state.orderLists];
-
-      const targetItem = updatedOrderLists.find((item) => item.id === id);
-      if (targetItem) {
-        if (targetItem.count === 0) return state;
-        targetItem.count -= 1;
-        return { orderLists: [...updatedOrderLists, targetItem] };
+      const targetItemIndex = updatedOrderLists.findIndex(
+        (item) => item.id === id
+      );
+      if (targetItemIndex !== -1) {
+        const targetItem = updatedOrderLists[targetItemIndex];
+        if (targetItem.count > 0) {
+          targetItem.count -= 1;
+        }
+        updatedOrderLists[targetItemIndex] = targetItem;
       }
-
-      return state;
+      return { orderLists: updatedOrderLists };
     }),
 }));
 
