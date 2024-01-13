@@ -4,4 +4,5 @@ export type OrderListType = {
   event: number;
   marterialType: number;
   price: number;
+  count: number;
 };
