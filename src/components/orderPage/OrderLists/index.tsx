@@ -7,6 +7,7 @@ import { getOrderAPI } from "@/apis/order";
 import Loading from "../Loading";
 import { OrderListType } from "@/types/order";
 import { formatNumberWithCommas } from "@/utils/order";
+import { useRouter } from "next/navigation";
 
 const OrderLists = () => {
   const [loading, setLoading] = useState<boolean>(true);
